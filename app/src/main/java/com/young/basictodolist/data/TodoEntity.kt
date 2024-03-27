@@ -13,5 +13,5 @@ data class TodoEntity (
     @ColumnInfo(name = "category") var category: String,
     @ColumnInfo(name = "date") var date: Long,
     @ColumnInfo(name = "time") var time: Long,
-    @ColumnInfo(name = "isFinished") var isFinished: Int
+    @ColumnInfo(name = "isFinished") var isFinished: Boolean
 )
