@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BasicTodoList</string>
+    <string name="tb_title">toolbar</string>
 </resources>
