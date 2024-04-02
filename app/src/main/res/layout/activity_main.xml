@@ -19,7 +19,7 @@
         android:id="@+id/rv_todo"
         tools:itemCount="5"
         android:padding="8dp"
-        tools:listitem=""
+        tools:listitem="@layout/item_todo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
