@@ -6,4 +6,199 @@
     android:layout_height="match_parent"
     tools:context=".TaskActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_add_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="New Task"
+        android:background="#49FF61"/>
+
+    <TextView
+        android:id="@+id/tv_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_add_task"
+        android:text="Task"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_task"
+        app:hintTextColor="#FF4848"
+        app:boxStrokeColor="#FF4848">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:inputType="textCapWords"
+            android:hint="Entar Task Title"
+            android:textSize="18sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_memo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_task"
+        android:text="Memo"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_memo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_memo"
+        app:hintTextColor="#FF4848"
+        app:boxStrokeColor="#FF4848">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="3"
+            android:gravity="start"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="Entar Task Memo"
+            android:textSize="18sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_memo"
+        android:text="Set Reminder Date and Time"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reminder"
+        app:hintTextColor="#FF4848"
+        app:boxStrokeColor="#FF4848">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:drawableEnd="@drawable/ic_date_range_black_24dp"
+            android:drawablePadding="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="Set Date"
+            android:textSize="18sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reminder"
+        android:visibility="gone"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:hintTextColor="#FF4848"
+        app:boxStrokeColor="#FF4848">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:drawableEnd="@drawable/ic_access_time_black_24dp"
+            android:drawablePadding="8dp"
+            android:drawableTint="#FF4848"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="Set Time"
+            android:textSize="18sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_date">
+
+        <Spinner
+            android:id="@+id/sp_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+
+        <ImageView
+            android:id="@+id/img_add_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_playlist_add_black_24dp"
+            app:tint="@color/tb_background"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_category"
+        app:cornerRadius="25dp"
+        android:text="Add Task"
+        android:textSize="16sp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
