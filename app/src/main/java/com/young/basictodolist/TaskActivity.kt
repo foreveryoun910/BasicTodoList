@@ -7,12 +7,19 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import com.young.basictodolist.data.AppDatabase
+import com.young.basictodolist.data.TodoEntity
 import com.young.basictodolist.databinding.ActivityTaskBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 
 const val DB_NAME = "todo.db"
 
 class TaskActivity : AppCompatActivity(), View.OnClickListener {
+
+    lateinit var binding: ActivityTaskBinding
 
     lateinit var myCalendar: Calendar
     lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
@@ -28,12 +35,16 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_task)
+        binding = ActivityTaskBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setUpSpinner()
     }
 
     private fun setUpSpinner() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, labels)
         labels.sort()
+        binding.spCategory.adapter = adapter
     }
 
     override fun onClick(v: View?) {
@@ -51,6 +62,26 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun addTask() {
-        //
+        val category = binding.spCategory.toString();
+        val task = binding.tilTask.editText?.text.toString()
+        val memo = binding.tilMemo.editText?.text.toString()
+
+        GlobalScope.launch(Dispatchers.Main) {
+            withContext(Dispatchers.IO) {
+                return@withContext db?.getTodoDao()?.insertTodo(
+                    TodoEntity(
+                        id = null,
+                        task,
+                        memo,
+                        importance = null,
+                        category,
+                        finalDate,
+                        finalTime,
+                        isFinished = false
+                    )
+                )
+            }
+            finish()
+        }
     }
 }

@@ -9,7 +9,7 @@ data class TodoEntity (
     @PrimaryKey(autoGenerate = true) var id: Int? = null,
     @ColumnInfo(name = "task") var task: String,
     @ColumnInfo(name = "memo") var memo: String,
-    @ColumnInfo(name = "importance") var importance: Int,
+    @ColumnInfo(name = "importance") var importance: Int?,
     @ColumnInfo(name = "category") var category: String,
     @ColumnInfo(name = "date") var date: Long,
     @ColumnInfo(name = "time") var time: Long,
