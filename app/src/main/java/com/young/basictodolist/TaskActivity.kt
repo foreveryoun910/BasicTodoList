@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.TimePicker
 import com.young.basictodolist.data.AppDatabase
 import com.young.basictodolist.data.TodoEntity
 import com.young.basictodolist.databinding.ActivityTaskBinding
@@ -13,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.Calendar
 
 const val DB_NAME = "todo.db"
@@ -53,7 +55,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
                 //
             }
             R.id.edt_time -> {
-                //
+                setTimeListener()
             }
             R.id.btn_add_task -> {
                 addTask()
@@ -83,5 +85,29 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
             }
             finish()
         }
+    }
+
+    private fun setTimeListener() {
+        myCalendar = Calendar.getInstance()
+
+        timeSetListener =
+            TimePickerDialog.OnTimeSetListener { _: TimePicker, hourOfDay: Int, min: Int ->
+                myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                myCalendar.set(Calendar.MINUTE, min)
+                updateTime()
+            }
+        val timePickerDialog = TimePickerDialog(
+            this, timeSetListener, myCalendar.get(Calendar.HOUR_OF_DAY),
+            myCalendar.get(Calendar.MINUTE), false
+        )
+        timePickerDialog.show()
+    }
+
+    private fun updateTime() {
+        val myFormat = "h:mm a"
+        val sdf = SimpleDateFormat(myFormat)
+        finalDate = myCalendar.time.time
+        binding.edtDate.setText(sdf.format(myCalendar.time))
+        binding.tilTime.visibility = View.VISIBLE
     }
 }
