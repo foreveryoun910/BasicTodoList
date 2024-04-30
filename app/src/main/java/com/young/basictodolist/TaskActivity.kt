@@ -53,7 +53,7 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.edt_date -> {
-                //
+                setDateListener()
             }
             R.id.edt_time -> {
                 setTimeListener()
