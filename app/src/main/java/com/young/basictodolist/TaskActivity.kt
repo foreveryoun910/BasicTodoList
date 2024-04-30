@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.DatePicker
 import android.widget.TimePicker
 import com.young.basictodolist.data.AppDatabase
 import com.young.basictodolist.data.TodoEntity
@@ -105,6 +106,31 @@ class TaskActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun updateTime() {
         val myFormat = "h:mm a"
+        val sdf = SimpleDateFormat(myFormat)
+        finalTime = myCalendar.time.time
+        binding.edtTime.setText(sdf.format(myCalendar.time))
+    }
+
+    private fun setDateListener() {
+        myCalendar = Calendar.getInstance()
+
+        dateSetListener =
+            DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, month)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                updateDate()
+            }
+        val datePickerDialog = DatePickerDialog(
+            this, dateSetListener, myCalendar.get(Calendar.YEAR),
+            myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.datePicker.minDate = System.currentTimeMillis()
+        datePickerDialog.show()
+    }
+
+    private fun updateDate() {
+        val myFormat = "EEE, d MMM yyyy"
         val sdf = SimpleDateFormat(myFormat)
         finalDate = myCalendar.time.time
         binding.edtDate.setText(sdf.format(myCalendar.time))
